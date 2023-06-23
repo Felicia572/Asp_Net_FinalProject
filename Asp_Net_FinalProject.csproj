@@ -175,6 +175,7 @@
       <DependentUpon>db.edmx</DependentUpon>
       <LastGenOutput>db.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\db.edmx.sql" />
     <Content Include="Models\db.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>db.edmx</DependentUpon>
