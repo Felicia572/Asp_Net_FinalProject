@@ -8,10 +8,11 @@
         <EntityTypeShape EntityType="dbModel.Comment" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="dbModel.Post" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="dbModel.User" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbModel.User_Role" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.User_Role" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="dbModel.FK__Comment__Post_id__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="dbModel.FK__Comment__User_id__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="dbModel.FK__Post__User_id__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_User_User_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -22,6 +22,10 @@
       <End Role="User" EntitySet="User" />
       <End Role="Post" EntitySet="Post" />
     </AssociationSet>
+    <AssociationSet Name="FK_User_User_Role" Association="dbModel.Store.FK_User_User_Role">
+      <End Role="User_Role" EntitySet="User_Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Comment">
     <Key>
@@ -97,6 +101,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_User_Role">
+    <End Role="User_Role" Type="dbModel.Store.User_Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="dbModel.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -137,6 +155,7 @@
           <Property Name="Role_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Comment" Relationship="Self.FK__Comment__User_id__3D5E1FD2" FromRole="User" ToRole="Comment" />
           <NavigationProperty Name="Post" Relationship="Self.FK__Post__User_id__3A81B327" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="User_Role" Relationship="dbModel.FK_User_User_Role" FromRole="User" ToRole="User_Role" />
         </EntityType>
         <EntityType Name="User_Role">
           <Key>
@@ -144,6 +163,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Role_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="dbModel.FK_User_User_Role" FromRole="User_Role" ToRole="User" />
         </EntityType>
         <Association Name="FK__Comment__Post_id__3E52440B">
           <End Role="Post" Type="Self.Post" Multiplicity="1" />
@@ -198,7 +218,25 @@
             <End Role="User" EntitySet="User" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_User_Role" Association="dbModel.FK_User_User_Role">
+            <End Role="User_Role" EntitySet="User_Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_User_User_Role">
+          <End Type="dbModel.User_Role" Role="User_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

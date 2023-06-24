@@ -32,5 +32,6 @@ namespace Asp_Net_FinalProject.Models
         public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Post { get; set; }
+        public virtual User_Role User_Role { get; set; }
     }
 }

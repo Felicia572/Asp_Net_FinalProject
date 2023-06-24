@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/23/2023 21:34:39
+-- Date Created: 06/24/2023 17:05:15
 -- Generated from EDMX file: D:\school\university\大三\asp_net\Asp_Net_FinalProject\Models\db.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [D:\school\university\大三\asp_net\Asp_Net_FinalProject\App_Data\db.mdf];
+USE [db];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -25,6 +25,9 @@ IF OBJECT_ID(N'[dbo].[FK__Comment__User_id__3D5E1FD2]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK__Post__User_id__3A81B327]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Post] DROP CONSTRAINT [FK__Post__User_id__3A81B327];
+GO
+IF OBJECT_ID(N'[dbo].[FK_User_User_Role]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_User_User_Role];
 GO
 
 -- --------------------------------------------------
@@ -163,9 +166,20 @@ ON [dbo].[Post]
     ([User_id]);
 GO
 
-INSERT INTO User_Role (Role_Name) VALUES ('Admin');
-INSERT INTO User_Role (Role_Name) VALUES ('User');
+-- Creating foreign key on [Role_id] in table 'User'
+ALTER TABLE [dbo].[User]
+ADD CONSTRAINT [FK_User_User_Role]
+    FOREIGN KEY ([Role_id])
+    REFERENCES [dbo].[User_Role]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
 
+-- Creating non-clustered index for FOREIGN KEY 'FK_User_User_Role'
+CREATE INDEX [IX_FK_User_User_Role]
+ON [dbo].[User]
+    ([Role_id]);
+GO
 
 -- --------------------------------------------------
 -- Script has ended

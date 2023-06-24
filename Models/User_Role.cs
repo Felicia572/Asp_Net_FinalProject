@@ -14,7 +14,16 @@ namespace Asp_Net_FinalProject.Models
     
     public partial class User_Role
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User_Role()
+        {
+            this.User = new HashSet<User>();
+        }
+    
         public int Id { get; set; }
         public string Role_Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> User { get; set; }
     }
 }
