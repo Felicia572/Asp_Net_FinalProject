@@ -163,6 +163,10 @@ ON [dbo].[Post]
     ([User_id]);
 GO
 
+INSERT INTO User_Role (Role_Name) VALUES ('Admin');
+INSERT INTO User_Role (Role_Name) VALUES ('User');
+
+
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------

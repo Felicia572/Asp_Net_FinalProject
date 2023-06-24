@@ -1,15 +1,4 @@
-/**
-* Template Name: Impact
-* Updated: May 30 2023 with Bootstrap v5.3.0
-* Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# Set main reusable colors and fonts using CSS variables
-# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -2666,4 +2655,93 @@ section {
 
 .footer .credits a {
   color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    .login ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+
+
+
+ .card {
+    width: 400px;
+    border: none;
+}
+
+
+
+
+.btr {
+    border-top-right-radius: 5px !important;
+}
+
+
+.btl {
+    border-top-left-radius: 5px !important;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+
+.btn-dark:hover {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+
+.nav-pills {
+    display: table !important;
+    width: 100%;
+}
+
+.nav-pills .nav-link {
+    border-radius: 0px;
+    border-bottom: 1px solid #0d6efd40;
+}
+
+.nav-item {
+    display: table-cell;
+    background: #0d6efd2e;
+}
+
+
+.form {
+    padding: 10px;
+    height: 300px;
+}
+
+.form input {
+    margin-bottom: 12px;
+    border-radius: 3px;
+}
+
+
+.form input:focus {
+    box-shadow: none;
+}
+
+
+.form button {
+    margin-top: 20px;
 }
