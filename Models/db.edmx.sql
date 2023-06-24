@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/24/2023 17:05:15
+-- Date Created: 06/24/2023 22:19:05
 -- Generated from EDMX file: D:\school\university\大三\asp_net\Asp_Net_FinalProject\Models\db.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [db];
+USE [D:\SCHOOL\UNIVERSITY\大三\ASP_NET\ASP_NET_FINALPROJECT\APP_DATA\DB.MDF];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -180,6 +180,10 @@ CREATE INDEX [IX_FK_User_User_Role]
 ON [dbo].[User]
     ([Role_id]);
 GO
+
+INSERT INTO User_Role (Role_Name) VALUES ('Admin');
+INSERT INTO User_Role (Role_Name) VALUES ('User');
+
 
 -- --------------------------------------------------
 -- Script has ended
