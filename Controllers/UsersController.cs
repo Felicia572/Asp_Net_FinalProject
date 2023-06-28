@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Asp_Net_FinalProject.Models;
 
 namespace Asp_Net_FinalProject.Controllers
@@ -15,11 +16,17 @@ namespace Asp_Net_FinalProject.Controllers
         private dbEntities db = new dbEntities();
 
         // GET: Users
-        public ActionResult Index()
+        public ActionResult AdminIndex()
         {
             var user = db.User.Include(u => u.User_Role);
             return View(user.ToList());
         }
+
+        //public ActionResult UserIndex()
+        //{
+        //    // 一般用户角色的处理逻辑
+        //    return View();
+        //}
 
         // GET: Users/Details/5
         public ActionResult Details(int? id)
@@ -39,7 +46,9 @@ namespace Asp_Net_FinalProject.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.Role_id = new SelectList(db.User_Role, "Id", "Role_Name");
+            // 获取除了管理员角色之外的所有角色列表
+            var roles = db.User_Role.Where(r => r.Role_Name != "Admin").ToList();
+            ViewBag.Role_id = new SelectList(roles, "Id", "Role_Name");
             return View();
         }
 
@@ -55,7 +64,7 @@ namespace Asp_Net_FinalProject.Controllers
                 user.Registration_date = DateTime.Now; // 设置注册日期为当前日期和时间
                 db.User.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminIndex");
             }
 
             return View(user);
@@ -88,7 +97,7 @@ namespace Asp_Net_FinalProject.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminIndex");
             }
             ViewBag.Role_id = new SelectList(db.User_Role, "Id", "Role_Name", user.Role_id);
             return View(user);
@@ -117,8 +126,48 @@ namespace Asp_Net_FinalProject.Controllers
             User user = db.User.Find(id);
             db.User.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminIndex");
         }
+
+        public ActionResult Login(Asp_Net_FinalProject.Models.User model)
+        {
+            if (ModelState.IsValid)
+            {
+                // 查询数据库，验证用户凭据
+                User user = db.User.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
+
+                if (user != null)
+                {
+                    // 登入成功，设置身份驗證 Cookie
+                    FormsAuthentication.SetAuthCookie(model.Email, false);
+
+                    // 獲取用户的角色訊息
+                    int userRole = user.Role_id; // 假設角色字段 "Role"
+
+                    if (userRole == 1)
+                    {
+                        // 管理员角色的处理逻辑
+                        return RedirectToAction("AdminIndex");
+                    }
+                    else
+                    {
+                        // 一般用户角色的处理逻辑
+                        //return RedirectToAction("UserIndex");
+                        return RedirectToAction("Create", "Posts");
+
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid email or password");
+                }
+            }
+
+            return View(model);
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {
