@@ -129,7 +129,7 @@ namespace Asp_Net_FinalProject.Controllers
             return RedirectToAction("AdminIndex");
         }
 
-        public ActionResult Login(Asp_Net_FinalProject.Models.User model)
+        public ActionResult Login(User model)
         {
             if (ModelState.IsValid)
             {
@@ -138,11 +138,11 @@ namespace Asp_Net_FinalProject.Controllers
 
                 if (user != null)
                 {
-                    // 登入成功，设置身份驗證 Cookie
+                    // 登录成功，设置身份验证 Cookie
                     FormsAuthentication.SetAuthCookie(model.Email, false);
 
-                    // 獲取用户的角色訊息
-                    int userRole = user.Role_id; // 假設角色字段 "Role"
+                    // 获取用户的角色信息
+                    int userRole = user.Role_id; // 假设角色字段 "Role"
 
                     if (userRole == 1)
                     {
@@ -152,9 +152,7 @@ namespace Asp_Net_FinalProject.Controllers
                     else
                     {
                         // 一般用户角色的处理逻辑
-                        //return RedirectToAction("UserIndex");
-                        return RedirectToAction("Create", "Posts");
-
+                        return RedirectToAction("Create","Posts");
                     }
                 }
                 else
