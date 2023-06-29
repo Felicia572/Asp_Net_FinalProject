@@ -22,6 +22,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Posts/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +41,7 @@ namespace Asp_Net_FinalProject.Controllers
         [Authorize] // 添加身份验证属性
         public ActionResult Create()
         {
-            ViewBag.User_id = new SelectList(db.User, "Id", "UserName");
+            ViewBag.User_id = User.Identity.Name;
             return View();
         }
 
@@ -52,15 +53,22 @@ namespace Asp_Net_FinalProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                post.Post_date = DateTime.Now;
-                db.Post.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // 获取当前登录用户的用户 ID
+                string userEmail = User.Identity.Name;
+                User user = db.User.FirstOrDefault(u => u.Email == userEmail);
+                if (user != null)
+                {
+                    post.User_id = user.Id; // 设置正确的用户 ID
+                    post.Post_date = DateTime.Now;
+                    db.Post.Add(post);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
-            ViewBag.User_id = new SelectList(db.User, "Id", "UserName", post.User_id);
             return View(post);
         }
+
 
         // GET: Posts/Edit/5
         [Authorize] // 添加身份验证属性

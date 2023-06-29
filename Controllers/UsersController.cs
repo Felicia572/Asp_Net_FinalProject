@@ -15,7 +15,42 @@ namespace Asp_Net_FinalProject.Controllers
     {
         private dbEntities db = new dbEntities();
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return View("Login");
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Login(Models.User model)
+        {
+            if (ModelState.IsValid)
+            {
+                // 查询数据库，验证用户凭据
+                User user = db.User.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
+
+                if (user != null)
+                {
+                    // 登录成功，设置身份验证 Cookie
+                    FormsAuthentication.SetAuthCookie(model.Email, false);
+                    return RedirectToAction("Create", "Posts");
+                }
+                else
+                {
+                    ViewBag.Err("Invalid email or password!");
+                }
+            }
+
+            return View(model);
+        }
+
         // GET: Users
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var user = db.User.Include(u => u.User_Role);
@@ -23,6 +58,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -63,8 +99,8 @@ namespace Asp_Net_FinalProject.Controllers
 
             if (ModelState.IsValid)
             {
-                user.Registration_date = DateTime.Now; // 设置注册日期为当前日期和时间
-                user.Role_id = 2; // 设置为固定的角色ID，2表示"User"角色
+                user.Registration_date = DateTime.Now; // 設置註冊日期和時間
+                user.Role_id = 2; // 設置為固定的角色ID，2表示"User"角色
                 db.User.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
