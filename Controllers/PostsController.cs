@@ -54,12 +54,12 @@ namespace Asp_Net_FinalProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                // 获取当前登录用户的用户 ID
+                // 當前登入用戶的用戶 ID
                 string userEmail = User.Identity.Name;
                 User user = db.User.FirstOrDefault(u => u.Email == userEmail);
                 if (user != null)
                 {
-                    post.User_id = user.Id; // 设置正确的用户 ID
+                    post.User_id = user.Id; // 正确的用戶 ID
                     post.Post_date = DateTime.Now;
                     db.Post.Add(post);
                     db.SaveChanges();

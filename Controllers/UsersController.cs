@@ -18,7 +18,8 @@ namespace Asp_Net_FinalProject.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return View("Login");
+            Session.Abandon(); // 清除對話紀錄
+            return RedirectToAction("Login");
         }
         public ActionResult Login()
         {
@@ -31,12 +32,12 @@ namespace Asp_Net_FinalProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                // 查询数据库，验证用户凭据
+                // 查詢資料庫，驗證用戶
                 User user = db.User.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 
                 if (user != null)
                 {
-                    // 登录成功，设置身份验证 Cookie
+                    // 登入成功，設置身分驗證 Cookie
                     FormsAuthentication.SetAuthCookie(model.Email, false);
                     return RedirectToAction("Create", "Posts");
                 }
@@ -99,8 +100,8 @@ namespace Asp_Net_FinalProject.Controllers
 
             if (ModelState.IsValid)
             {
-                user.Registration_date = DateTime.Now; // 設置註冊日期和時間
-                user.Role_id = 2; // 設置為固定的角色ID，2表示"User"角色
+                user.Registration_date = DateTime.Now; // 註冊日期和時間
+                user.Role_id = 2; // 固定的角色ID，2表示"User"角色
                 db.User.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
