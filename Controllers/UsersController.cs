@@ -22,7 +22,6 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -51,6 +50,16 @@ namespace Asp_Net_FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserName,Password,Email,Role_id")] User user)
         {
+            if (user.UserName.ToLower() == "admin") //不能使用admin命名
+            {
+                ModelState.AddModelError("UserName", "Don't use admin.");
+            }
+
+            if (db.User.Any(u => u.Email == user.Email)) //如果已經有人使用過該Email就不能再使用
+            {
+                ModelState.AddModelError("Email", "This email address is already taken.");
+            }
+
             if (ModelState.IsValid)
             {
                 user.Registration_date = DateTime.Now; // 设置注册日期为当前日期和时间
@@ -63,7 +72,6 @@ namespace Asp_Net_FinalProject.Controllers
             return View(user);
         }
 
-        [Authorize]
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -97,7 +105,6 @@ namespace Asp_Net_FinalProject.Controllers
             return View(user);
         }
 
-        [Authorize]
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
