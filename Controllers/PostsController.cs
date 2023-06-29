@@ -15,6 +15,7 @@ namespace Asp_Net_FinalProject.Controllers
         private dbEntities db = new dbEntities();
 
         // GET: Posts
+        [Authorize]
         public ActionResult Index()
         {
             var post = db.Post.Include(p => p.User);
@@ -38,7 +39,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Posts/Create
-        [Authorize] // 添加身份验证属性
+        [Authorize] 
         public ActionResult Create()
         {
             ViewBag.User_id = User.Identity.Name;
@@ -48,7 +49,7 @@ namespace Asp_Net_FinalProject.Controllers
         // POST: Posts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize] // 添加身份验证属性
+        [Authorize] 
         public ActionResult Create([Bind(Include = "Id,Title,Content,User_id")] Post post)
         {
             if (ModelState.IsValid)
@@ -71,7 +72,7 @@ namespace Asp_Net_FinalProject.Controllers
 
 
         // GET: Posts/Edit/5
-        [Authorize] // 添加身份验证属性
+        [Authorize] 
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,7 +91,7 @@ namespace Asp_Net_FinalProject.Controllers
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize] // 添加身份验证属性
+        [Authorize] 
         public ActionResult Edit([Bind(Include = "Id,Title,Content,User_id,Post_date")] Post post)
         {
             if (ModelState.IsValid)
@@ -104,7 +105,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Posts/Delete/5
-        [Authorize] // 添加身份验证属性
+        [Authorize] 
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,7 +123,7 @@ namespace Asp_Net_FinalProject.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize] // 添加身份验证属性
+        [Authorize] 
         public ActionResult DeleteConfirmed(int id)
         {
             Post post = db.Post.Find(id);

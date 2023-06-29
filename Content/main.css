@@ -235,32 +235,32 @@ section {
   padding: 0;
 }
 
-.topbar .contact-info i {
-  font-style: normal;
-  color: #fff;
-  line-height: 0;
-}
+    .topbar .contact-info p {
+        font-style: normal;
+        color: #fff;
+        line-height: 0;
+    }
 
-.topbar .contact-info i a,
-.topbar .contact-info i span {
-  padding-left: 5px;
-  color: #fff;
-}
+    .topbar .contact-info p a,
+    .topbar .contact-info p span {
+        padding-left: 5px;
+        color: #fff;
+    }
 
 @media (max-width: 575px) {
 
-  .topbar .contact-info i a,
-  .topbar .contact-info i span {
+  .topbar .contact-info p a,
+  .topbar .contact-info p span {
     font-size: 13px;
   }
 }
 
-.topbar .contact-info i a {
+.topbar .contact-info p a {
   line-height: 0;
   transition: 0.3s;
 }
 
-.topbar .contact-info i a:hover {
+.topbar .contact-info p a:hover {
   color: #fff;
   text-decoration: underline;
 }
