@@ -129,8 +129,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\blogController.cs" />
-    <Compile Include="Controllers\Blog_Detail_Controller.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -253,7 +251,6 @@
       <DependentUpon>db.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
-    <Content Include="Views\blog\Index.cshtml" />
     <Content Include="Scripts\vendor\aos\aos.js.map" />
     <Content Include="Scripts\vendor\bootstrap-icons\bootstrap-icons.json" />
     <Content Include="Scripts\vendor\bootstrap-icons\bootstrap-icons.scss" />
@@ -298,7 +295,6 @@
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
-    <Content Include="Views\Blog_Detail_\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

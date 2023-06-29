@@ -22,6 +22,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +40,7 @@ namespace Asp_Net_FinalProject.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.Role_id = new SelectList(db.User_Role, "Id", "Role_Name");
+            ViewBag.Role_id = 2;
             return View();
         }
 
@@ -53,6 +54,7 @@ namespace Asp_Net_FinalProject.Controllers
             if (ModelState.IsValid)
             {
                 user.Registration_date = DateTime.Now; // 设置注册日期为当前日期和时间
+                user.Role_id = 2; // 设置为固定的角色ID，2表示"User"角色
                 db.User.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -61,6 +63,7 @@ namespace Asp_Net_FinalProject.Controllers
             return View(user);
         }
 
+        [Authorize]
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -94,6 +97,7 @@ namespace Asp_Net_FinalProject.Controllers
             return View(user);
         }
 
+        [Authorize]
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
