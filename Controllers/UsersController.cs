@@ -23,13 +23,11 @@ namespace Asp_Net_FinalProject.Controllers
             Session.Abandon(); // 清除對話紀錄
             return RedirectToAction("Login");
         }
-        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(Models.User model)
         {
@@ -46,11 +44,49 @@ namespace Asp_Net_FinalProject.Controllers
                 }
                 else
                 {
-                    ViewBag.Error="Invalid email or password!";
+                    ViewBag.Error="帳號(Email)或密碼錯誤！";
                 }
             }
 
             return View(model);
+        }
+
+        // GET: Users/Create
+        [AllowAnonymous]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Users/Create
+        // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
+        // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        [HttpPost,ActionName("Create")]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+
+        public ActionResult Create([Bind(Include = "Id,UserName,Password,Email,Role_id")] User user)
+        {
+            if (user.UserName.ToLower() == "admin") //不能使用admin命名
+            {
+                ModelState.AddModelError("UserName", "Don't use admin.");
+            }
+
+            if (db.User.Any(u => u.Email == user.Email)) //如果已經有人使用過該Email就不能再使用
+            {
+                ModelState.AddModelError("Email", "This email address is already taken.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                user.Registration_date = DateTime.Now; // 註冊日期和時間
+                user.Role_id = 2; // 固定的角色ID，2表示"User"角色
+                db.User.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Create","Posts");
+            }
+
+            return View(user);
         }
 
         // GET: Users
@@ -77,42 +113,6 @@ namespace Asp_Net_FinalProject.Controllers
             return View(user);
         }
 
-        // GET: Users/Create
-        public ActionResult Create()
-        {
-            ViewBag.Role_id = 2;
-            return View();
-        }
-
-        // POST: Users/Create
-        // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
-        // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserName,Password,Email,Role_id")] User user)
-        {
-            if (user.UserName.ToLower() == "admin") //不能使用admin命名
-            {
-                ModelState.AddModelError("UserName", "Don't use admin.");
-            }
-
-            if (db.User.Any(u => u.Email == user.Email)) //如果已經有人使用過該Email就不能再使用
-            {
-                ModelState.AddModelError("Email", "This email address is already taken.");
-            }
-
-            if (ModelState.IsValid)
-            {
-                user.Registration_date = DateTime.Now; // 註冊日期和時間
-                user.Role_id = 2; // 固定的角色ID，2表示"User"角色
-                db.User.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(user);
-        }
-        
         // GET: Users/Edit/5
         [CustomAuthorize(Users = "admin@example.com")]
         public ActionResult Edit(int? id)
