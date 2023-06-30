@@ -1,10 +1,35 @@
 ﻿﻿@model IEnumerable<Asp_Net_FinalProject.Models.User>
 
-@{
-    ViewBag.Title = "Index";
-}
+
+
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>會員管理</h2>
+                    <p>
+                        作為會員管理者，職責包括：
+                        <br />
+                        <br />
+                        管理用戶帳戶、設定訪問權限、處理投訴與舉報、審核和管理内容、
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                <li>會員管理</li>
+            </ol>
+        </div>
+    </nav>
+</div> @*End Breadcrumbs*@
 <div class="container">
-    <h2>Index</h2>
+
 
     <p>
         @Html.ActionLink("Create New", "Create")
