@@ -3,16 +3,16 @@
 @{
     ViewBag.Title = "登入";
 }
-
-<form method="post" action="@Url.Action("Login")">
-    <div>
-        <div><h2>會員登入</h2></div>
+<div class="container">
+    <form method="post" action="@Url.Action("Login")">
         <div>
-            <p>帳號：<input type="text" class="form-control" name="Email" required /></p>
-            <p>密碼：<input type="password" class="form-control" name="Password" required /></p>
-            <p class="text-danger">@ViewBag.Error</p>
-            <p><input type="submit" class="btn btn-primary" value="登入" /></p>
+            <div><h2>會員登入</h2></div>
+            <div>
+                <p>帳號：<input type="text" class="form-control" name="Email" required /></p>
+                <p>密碼：<input type="password" class="form-control" name="Password" required /></p>
+                <p class="text-danger">@ViewBag.Error</p>
+                <p><input type="submit" class="btn btn-primary" value="登入" /></p>
+            </div>
         </div>
-    </div>
-</form>
-
+    </form>
+</div>
