@@ -297,7 +297,6 @@
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
-    <Content Include="Views\Errors\Unauthorized.cshtml" />
     <Content Include="Views\Errors\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
