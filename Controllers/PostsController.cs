@@ -42,7 +42,6 @@ namespace Asp_Net_FinalProject.Controllers
         [Authorize] 
         public ActionResult Create()
         {
-            ViewBag.User_id = User.Identity.Name;
             return View();
         }
 
@@ -59,7 +58,7 @@ namespace Asp_Net_FinalProject.Controllers
                 User user = db.User.FirstOrDefault(u => u.Email == userEmail);
                 if (user != null)
                 {
-                    post.User_id = user.Id; // 正确的用戶 ID
+                    post.User_id = user.Id; // 正確的用戶 ID
                     post.Post_date = DateTime.Now;
                     db.Post.Add(post);
                     db.SaveChanges();

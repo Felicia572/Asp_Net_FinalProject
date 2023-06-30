@@ -15,12 +15,14 @@ namespace Asp_Net_FinalProject.Controllers
     {
         private dbEntities db = new dbEntities();
 
+        [AllowAnonymous]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             Session.Abandon(); // 清除對話紀錄
             return RedirectToAction("Login");
         }
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -43,7 +45,7 @@ namespace Asp_Net_FinalProject.Controllers
                 }
                 else
                 {
-                    ViewBag.Err("Invalid email or password!");
+                    ViewBag.Error="Invalid email or password!";
                 }
             }
 
@@ -51,7 +53,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users
-        [Authorize(Roles = "Admin")]
+        [Authorize(Users = "admin@example.com")]
         public ActionResult Index()
         {
             var user = db.User.Include(u => u.User_Role);
@@ -59,7 +61,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users/Details/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Users = "admin@example.com")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -109,8 +111,9 @@ namespace Asp_Net_FinalProject.Controllers
 
             return View(user);
         }
-
+        
         // GET: Users/Edit/5
+        [Authorize(Users = "admin@example.com")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -130,6 +133,7 @@ namespace Asp_Net_FinalProject.Controllers
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
+        [Authorize(Users = "admin@example.com")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,UserName,Password,Email,Registration_date,Role_id")] User user)
         {
@@ -144,6 +148,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users/Delete/5
+        [Authorize(Users = "admin@example.com")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -160,6 +165,7 @@ namespace Asp_Net_FinalProject.Controllers
 
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Users = "admin@example.com")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
