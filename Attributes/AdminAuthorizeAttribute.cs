@@ -3,12 +3,12 @@ using System.Web.Mvc;
 
 namespace Asp_Net_FinalProject.Attributes
 {
-    public class CustomAuthorizeAttribute : System.Web.Mvc.AuthorizeAttribute
+    public class AdminAuthorizeAttribute : AuthorizeAttribute
     {
-        private readonly string _staticUser;
-        public CustomAuthorizeAttribute()
+        private readonly string _adminUser;
+        public AdminAuthorizeAttribute()
         {
-            _staticUser = "admin@example.com";
+            _adminUser = "admin@example.com";
         }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
@@ -21,8 +21,8 @@ namespace Asp_Net_FinalProject.Attributes
 
             string dynamicUser = httpContext.User.Identity.Name;
 
-            // Allow access if the user is the static user (admin@example.com) or if the user is authenticated
-            if (dynamicUser == _staticUser || httpContext.Request.IsAuthenticated)
+            // Allow access only if the user is the admin user
+            if (dynamicUser == _adminUser)
             {
                 return true;
             }

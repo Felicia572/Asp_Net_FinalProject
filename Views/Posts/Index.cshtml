@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Asp_Net_FinalProject.Models.Post>
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Index";
@@ -23,9 +24,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.User.UserName)
             </th>
-            <th></th>
+            <th>修改|刪除</th>
         </tr>
-
         @foreach (var item in Model)
         {
             <tr>
@@ -33,13 +33,14 @@
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @if (item.Content.Length > 50)
+                    @if (item.Content.Length > 30)
                     {
-                        @:@item.Content.Substring(0, 90)...
+                        @: @item.Content.Substring(0, 30)...
+                        @Html.ActionLink("閱讀更多", "Details", new { id = item.Id })
                     }
                     else
                     {
-                        @:@item.Content
+                        @: @item.Content
                     }
                 </td>
                 <td>
@@ -48,18 +49,22 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.User.UserName)
                 </td>
-                @if (User.Identity.Name == "admin@example.com")
-                {
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-                }
-
-
+                <td>
+                    @if (User.Identity.Name == "admin@example.com" || item.User.Email == User.Identity.Name)
+                    {
+                        @Html.ActionLink("修改", "Edit", new { id = item.Id })
+                        <text>|</text>
+                        @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+                    }
+                    else
+                    {
+                        <p class="text-danger">沒有權限</p>
+                    }
+                </td>
             </tr>
         }
+
+
 
 
     </table>

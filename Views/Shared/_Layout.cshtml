@@ -69,9 +69,7 @@
         </div>
     </header><!-- End Header -->
     <!-- End Header -->
-    <main id="main">
         @RenderBody()
-    </main>
         <!-- ======= Footer ======= -->
         <footer id="footer" class="footer">
 
@@ -97,9 +95,9 @@
                     <div class="col-lg-2 col-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Services</a></li>
+                            <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                            <li>@Html.ActionLink("登入帳號", "Login", "Users")</li>
+                            <li>@Html.ActionLink("查看貼文", "Index", "Posts")</li>
                             <li><a href="#">Terms of service</a></li>
                             <li><a href="#">Privacy policy</a></li>
                         </ul>

@@ -90,7 +90,7 @@ namespace Asp_Net_FinalProject.Controllers
 
 
         // GET: Users
-        [CustomAuthorize(Users = "admin@example.com")]
+        [AdminAuthorize]
         public ActionResult Index()
         {
             var user = db.User.Include(u => u.User_Role);
@@ -98,7 +98,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users/Details/5
-        [CustomAuthorize(Users = "admin@example.com")]
+        [AdminAuthorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -114,7 +114,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users/Edit/5
-        [CustomAuthorize(Users = "admin@example.com")]
+        [AdminAuthorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace Asp_Net_FinalProject.Controllers
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [CustomAuthorize(Users = "admin@example.com")]
+        [AdminAuthorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,UserName,Password,Email,Registration_date,Role_id")] User user)
         {
@@ -149,7 +149,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Users/Delete/5
-        [CustomAuthorize(Users = "admin@example.com")]
+        [AdminAuthorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -166,7 +166,7 @@ namespace Asp_Net_FinalProject.Controllers
 
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
-        [CustomAuthorize(Users = "admin@example.com")]
+        [AdminAuthorize]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

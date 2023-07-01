@@ -9,9 +9,8 @@ namespace Asp_Net_FinalProject.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult index2()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }

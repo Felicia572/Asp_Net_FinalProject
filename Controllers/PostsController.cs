@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Asp_Net_FinalProject.Attributes;
 using Asp_Net_FinalProject.Models;
 
 namespace Asp_Net_FinalProject.Controllers
@@ -15,6 +16,8 @@ namespace Asp_Net_FinalProject.Controllers
         private dbEntities db = new dbEntities();
 
         // GET: Posts
+        
+
         public ActionResult Index()
         {
             var post = db.Post.Include(p => p.User);
@@ -22,6 +25,8 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Posts/Details/5
+        
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,7 +42,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Posts/Create
-        [Authorize] 
+        
         public ActionResult Create()
         {
             return View();
@@ -46,7 +51,7 @@ namespace Asp_Net_FinalProject.Controllers
         // POST: Posts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize] 
+        
         public ActionResult Create([Bind(Include = "Id,Title,Content,User_id")] Post post)
         {
             if (ModelState.IsValid)
@@ -69,6 +74,7 @@ namespace Asp_Net_FinalProject.Controllers
 
 
         // GET: Posts/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,6 +93,8 @@ namespace Asp_Net_FinalProject.Controllers
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
+
         public ActionResult Edit([Bind(Include = "Id,Title,Content,User_id,Post_date")] Post post)
         {
             if (ModelState.IsValid)
@@ -100,6 +108,8 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Posts/Delete/5
+        
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,6 +127,8 @@ namespace Asp_Net_FinalProject.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        
+
         public ActionResult DeleteConfirmed(int id)
         {
             Post post = db.Post.Find(id);
