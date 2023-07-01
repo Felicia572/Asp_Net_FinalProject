@@ -61,33 +61,33 @@ namespace Asp_Net_FinalProject.Controllers
         // POST: Users/Create
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost,ActionName("Create")]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-
         public ActionResult Create([Bind(Include = "Id,UserName,Password,Email,Role_id")] User user)
         {
-            if (user.UserName.ToLower() == "admin") //不能使用admin命名
+            if (user.UserName.ToLower() == "admin")
             {
-                ModelState.AddModelError("UserName", "Don't use admin.");
+                ModelState.AddModelError("UserName", "请勿使用 'admin' 作為名字！");
             }
 
-            if (db.User.Any(u => u.Email == user.Email)) //如果已經有人使用過該Email就不能再使用
+            if (db.User.Any(u => u.Email == user.Email))
             {
-                ModelState.AddModelError("Email", "This email address is already taken.");
+                ModelState.AddModelError("Email", "此 Email 已被使用！");
             }
 
             if (ModelState.IsValid)
             {
-                user.Registration_date = DateTime.Now; // 註冊日期和時間
-                user.Role_id = 2; // 固定的角色ID，2表示"User"角色
+                user.Registration_date = DateTime.Now;
+                user.Role_id = 2;
                 db.User.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Create","Posts");
+                return RedirectToAction("Create", "Posts");
             }
 
             return View(user);
         }
+
 
         // GET: Users
         [CustomAuthorize(Users = "admin@example.com")]

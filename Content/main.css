@@ -2745,11 +2745,11 @@ section {
 
 .login-wrap {
     position: relative;
-/*    background: #6c757d;*/
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
-    box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+    background: #0083743d;
+    border-radius: 40px;
+    -webkit-box-shadow: 25px 25px 30px 0px rgba(0, 0, 0,0.75);
+    -moz-box-shadow: 25px 25px 30px 0px rgba(0, 0, 0,0.75);
+    box-shadow: 25px 25px 30px 0px rgba(0, 0, 0,0.75);
 }
 
     .login-wrap h3 {
@@ -2761,7 +2761,7 @@ section {
     .login-wrap .icon {
         width: 80px;
         height: 80px;
-        background: #8d448b;
+        background: #198754;
         border-radius: 50%;
         font-size: 30px;
         margin: 0 auto;
