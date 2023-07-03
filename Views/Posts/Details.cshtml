@@ -1,8 +1,10 @@
 ﻿@model Asp_Net_FinalProject.Models.Post
 
-@{
-    ViewBag.Title = "Details";
-}
+@*@{
+        ViewBag.Title = "Details";
+    }*@
+
+
 <div class="container">
     <h2>Details</h2>
 
@@ -43,9 +45,37 @@
             </dd>
 
         </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+                <h2>評論</h2>
+
+                <input type="text" class="form-control" placeholder="撰寫評論" required name="Content">
+                <button id="Btn_commit" data-bs-toggle="modal" data-bs-target="#exampleModal">確認</button>
+            </div>
+        }
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">留言成功！</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                恭喜您！留言成功！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

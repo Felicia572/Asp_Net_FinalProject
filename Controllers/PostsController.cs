@@ -4,8 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading;
+using System.Timers;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Asp_Net_FinalProject.Attributes;
 using Asp_Net_FinalProject.Models;
 
@@ -16,7 +19,7 @@ namespace Asp_Net_FinalProject.Controllers
         private dbEntities db = new dbEntities();
 
         // GET: Posts
-        
+
 
         public ActionResult Index()
         {
@@ -25,7 +28,7 @@ namespace Asp_Net_FinalProject.Controllers
         }
 
         // GET: Posts/Details/5
-        
+
 
         public ActionResult Details(int? id)
         {
@@ -41,8 +44,37 @@ namespace Asp_Net_FinalProject.Controllers
             return View(post);
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult Details([Bind(Include = "Content")] Comment comment,int? id)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string userEmail = User.Identity.Name;
+                User user = db.User.FirstOrDefault(u => u.Email == userEmail);
+
+                if (user != null)
+                {
+                    comment.Post_id = (int)id;
+                    comment.Comment_date = DateTime.Now;
+                    comment.User_id = user.Id;
+                    db.Comment.Add(comment);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Details", new {id = id});
+                }
+                
+
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+
+
         // GET: Posts/Create
-        
+
         public ActionResult Create()
         {
             return View();
