@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Web;
 using System.Web.Mvc;
@@ -48,7 +49,7 @@ namespace Asp_Net_FinalProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Details([Bind(Include = "Content")] Comment comment,int? id)
+        public async Task<ActionResult> DetailsAsync([Bind(Include = "Content")] Comment comment,int? id)
         {
 
             if (ModelState.IsValid)
@@ -63,6 +64,7 @@ namespace Asp_Net_FinalProject.Controllers
                     comment.User_id = user.Id;
                     db.Comment.Add(comment);
                     db.SaveChanges();
+                    await Task.Delay(TimeSpan.FromSeconds(5));
 
                     return RedirectToAction("Details", new {id = id});
                 }
