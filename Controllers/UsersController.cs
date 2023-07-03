@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -64,7 +65,7 @@ namespace Asp_Net_FinalProject.Controllers
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult Create([Bind(Include = "Id,UserName,Password,Email,Role_id")] User user)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,UserName,Password,Email")] User user)
         {
             if (user.UserName.ToLower() == "admin")
             {
@@ -82,10 +83,11 @@ namespace Asp_Net_FinalProject.Controllers
                 user.Role_id = 2;
                 db.User.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Create", "Posts");
-            }
 
-            return View(user);
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                return RedirectToAction("Login");
+            }
+            return View("Login");
         }
 
 
