@@ -41,7 +41,7 @@ namespace Asp_Net_FinalProject.Controllers
                 {
                     // 登入成功，設置身分驗證 Cookie
                     FormsAuthentication.SetAuthCookie(model.Email, false);
-                    return RedirectToAction("Create", "Posts");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

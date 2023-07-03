@@ -40,7 +40,7 @@
     <section id="topbar" class="topbar d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info  align-items-center">
-                <p class="d-flex align-items-center">@User.Identity.Name 您好，按<a href="@Url.Action("Logout", "Users")">登出</a>&nbsp;即離開系統</p>
+                <p class="d-flex align-items-center">@User.Identity.Name 您好，按<a href="@Url.Action("Logout", "Users")">登出\登入</a>&nbsp;即前往不同世界</p>
             </div>
         </div>
     </section><!-- End Top Bar -->
@@ -55,12 +55,10 @@
                 <ul>
                     <li>@Html.ActionLink("管理帳號", "Index", "Users")</li>
                     @*<li><a href="~/Views/Users/Index.cshtml">管理帳號</a></li>*@
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
+
                     <li>@Html.ActionLink("最新貼文", "Index", "Posts")</li>
                     <li>@Html.ActionLink("建立貼文", "Create", "Posts")</li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li>@Html.ActionLink("登入帳號", "Login", "Users")</li>
+                    <li>@Html.ActionLink("會員登入", "Login", "Users")</li>
                     <li>@Html.ActionLink("建立帳號", "Create", "Users")</li>
                 </ul>
             </nav><!-- .navbar -->
@@ -98,10 +96,10 @@
                     <h4>Useful Links</h4>
                     <ul>
                         <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                        <li>@Html.ActionLink("登入帳號", "Login", "Users")</li>
-                        <li>@Html.ActionLink("查看貼文", "Index", "Posts")</li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li>@Html.ActionLink("會員登入", "Login", "Users")</li>
+                        <li>@Html.ActionLink("建立貼文", "Create", "Posts")</li>
+                        <li>@Html.ActionLink("最新貼文", "Index", "Posts")</li>
+
                     </ul>
                 </div>
 

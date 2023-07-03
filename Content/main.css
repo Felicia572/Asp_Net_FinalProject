@@ -1879,18 +1879,18 @@ section {
 }
 
 .hero .btn-get-started {
-  font-family: var(--font-primary);
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 14px 40px;
-  border-radius: 50px;
-  transition: 0.3s;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 14px 40px;
+    border-radius: 50px;
+    transition: 0.3s;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero .btn-get-started:hover {
@@ -2909,5 +2909,37 @@ section {
         text-align: center !important;
     }
 }
+
+.sumbitbtn input[type=submit] {
+    background: var(--color-primary);
+    border: 0;
+    padding: 14px 45px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.sumbitbtn input[type=submit]:hover {
+    background: rgba(0, 131, 116, 0.8);
+}
+
+.btn-Login {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 14px 40px;
+    border-radius: 50px;
+    transition: 0.3s;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+    .btn-Login:hover {
+        background: rgba(0, 131, 116, 0.8);
+    }
 
 

@@ -1,4 +1,7 @@
 ﻿@model Asp_Net_FinalProject.Models.User
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using System.Web
 
 <title>建立帳號</title>
 
@@ -91,19 +94,19 @@
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">註冊成功！</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        @*<a href="@Url.Action("Login")" class="btn-get-started btn-close" data-bs-dismiss="modal" aria-label="Close">Get Started</a>*@
+
                                     </div>
                                     <div class="modal-body">
                                         5秒後，立即進入登入頁面！
                                     </div>
                                     <div class="modal-footer">
+                                        <a href="@Url.Action("Login")" class="btn-Login" data-bs-dismiss="modal" aria-label="Close">關閉</a>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>

@@ -3,8 +3,32 @@
 @{
     ViewBag.Title = "Create";
 }
+<title>建立貼文</title>
+
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>建立貼文</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                <li>建立貼文</li>
+            </ol>
+        </div>
+    </nav>
+</div>
+
+
 <div class="container">
-    <h2>Create</h2>
+    <br />
     <p>@User.Identity.Name,你好</p>
 
     @using (Html.BeginForm())
@@ -12,7 +36,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Post</h4>
+            <h4>建立貼文</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -48,14 +72,15 @@
                 </div>*@
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                <div class="col-md-offset-2 col-md-10 sumbitbtn">
+                    <input type="submit" value="Create" />
                 </div>
             </div>
         </div>
     }
-
+    <br />
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("回到最新貼文", "Index")
     </div>
+    <br />
 </div>
