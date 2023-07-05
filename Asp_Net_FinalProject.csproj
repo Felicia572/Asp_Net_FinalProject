@@ -191,7 +191,6 @@
       <DependentUpon>db.edmx</DependentUpon>
       <LastGenOutput>db.cs</LastGenOutput>
     </Content>
-    <Content Include="NewFolder1\HtmlPage1.html" />
     <Content Include="Scripts\js\main.js" />
     <Content Include="Scripts\vendor\aos\aos.cjs.js" />
     <Content Include="Scripts\vendor\aos\aos.css" />
