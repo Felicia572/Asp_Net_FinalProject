@@ -3,6 +3,7 @@
 @using System.Web.Mvc.Html
 @using System.Web
 
+
 <title>建立帳號</title>
 
 <!-- ======= Breadcrumbs ======= -->
@@ -82,33 +83,35 @@
 
 
                                 <div class="form-group">
-                                    <button class="btn btn-success rounded submit p-3 px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">建立</button>
+                                    @*<input class="btn btn-success rounded submit p-3 px-5" data-bs-toggle="modal" data-bs-target="#exampleModal" value="建立" type="submit">*@
+                                    <input class="btn btn-success rounded submit p-3 px-5" value="建立" type="submit">
                                 </div>
                             </div>
                         }
 
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">註冊成功！</h1>
+                                    <div class="modal-header">-->
+                                        @*<h1 class="modal-title fs-5" id="exampleModalLabel">註冊失敗！@ViewData["Message"]</h1>*@
+                                        <!--<h1 class="modal-title fs-5" id="exampleModalLabel">註冊成功！ @ViewData["Message"]</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        @*<a href="@Url.Action("Login")" class="btn-get-started btn-close" data-bs-dismiss="modal" aria-label="Close">Get Started</a>*@
-
                                     </div>
-                                    <div class="modal-body">
-                                        5秒後，立即進入登入頁面！
+                                    <div class="modal-body">-->
+                                        @*<text>請輸入正確格式</text>*@
+                                        <!--<text>5秒後，自動進入登入頁面！</text>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="@Url.Action("Login")" class="btn-Login btn btn-success " data-bs-dismiss="modal" aria-label="Close">關閉</a>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a href="Login" class="btn-Login btn btn-success" data-bs-dismiss="modal" aria-label="Close">關閉</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
+

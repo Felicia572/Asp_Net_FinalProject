@@ -65,7 +65,7 @@ namespace Asp_Net_FinalProject.Controllers
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,UserName,Password,Email")] User user)
+        public ActionResult Create([Bind(Include = "Id,UserName,Password,Email")] User user)
         {
             if (user.UserName.ToLower() == "admin")
             {
@@ -84,10 +84,10 @@ namespace Asp_Net_FinalProject.Controllers
                 db.User.Add(user);
                 db.SaveChanges();
 
-                await Task.Delay(TimeSpan.FromSeconds(5));
                 return RedirectToAction("Login");
             }
-            return View("Login");
+
+            return View();
         }
 
 

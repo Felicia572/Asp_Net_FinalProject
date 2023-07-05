@@ -4,12 +4,29 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="container">
-    <h2>Index</h2>
+<title>最新貼文</title>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>最新貼文</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                <li>最新貼文</li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<div class="container">
     <table class="table">
         <tr>
             <th>
@@ -24,7 +41,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.User.UserName)
             </th>
-            <th>修改|刪除</th>
+            <th style="text-align: right;">修改|刪除|留言</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -49,16 +66,22 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.User.UserName)
                 </td>
-                <td>
+                <td style="text-align: right;">
                     @if (User.Identity.Name == "admin@example.com" || item.User.Email == User.Identity.Name)
                     {
                         @Html.ActionLink("修改", "Edit", new { id = item.Id })
                         <text>|</text>
                         @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+                        <text>|</text>
+                        @Html.ActionLink("留言", "Details", new { id = item.Id })
+
                     }
                     else
                     {
-                        <p class="text-danger">沒有權限</p>
+                        <span class="text-danger">沒有權限</span>
+                        <text>|</text>
+                        @Html.ActionLink("留言", "Details", new { id = item.Id })
+
                     }
                 </td>
             </tr>
